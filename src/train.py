@@ -83,7 +83,7 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
     best_precision = 0.0
 
     if params['cleassifier'] =='cnn':
-        model = CNNBert(bert, params['Dropout']).to(device)
+        model = CNNBert(bert, params['Dropout'], params['In_Channel']).to(device)
     else:
         model = lm_classifier(bert, params['Dropout']).to(device)
     
@@ -102,7 +102,7 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
     optimizer = getattr(torch.optim, params['optimizer'])(model.parameters(), lr= params['learning_rate'])
     # optimizer = torch.optim.AdamW(model.parameters(), lr = 5e-5, eps = 1e-8)
     scheduler = get_linear_schedule_with_warmup(optimizer, 
-                                            num_warmup_steps = int(total_steps/10), # Default value in run_glue.py
+                                            num_warmup_steps = int(total_steps/params["num_warmup_steps_divide"]), # Default value in run_glue.py
                                             num_training_steps = total_steps)
 
     for epoch in range(NUM_EPOCHS):
@@ -134,7 +134,7 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
 
         if val_f1 > best_f1:
             if val_f1 > F1_THERESHOLD:
-                torch.save(model.state_dict(),'model/best_bert.pth')
+                torch.save(model.state_dict(),'model/best_model.pth')
             best_f1 = val_f1
             best_precision = val_precision
             best_recall = val_recall
@@ -149,14 +149,14 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
             raise optuna.TrialPruned()
     
     if best_f1 > F1_THERESHOLD :
-        torch.save(model.state_dict(),f'model/best_bert_trial_{params["trial_num"]}.pth')
-        torch.save(model.state_dict(),'model/best_bert.pth')
+        torch.save(model.state_dict(),f'model/best_model_{params["study_name"]}_{params["trial_num"]}_trial_{params["trial_num"]}.pth')
+        torch.save(model.state_dict(),'model/best_model.pth')
         df = pd.DataFrame.from_dict(history)
-        df.to_csv(f'result/report_trial_{params["trial_num"]}.csv', index = False, header=True)
+        df.to_csv(f'result/report_{params["study_name"]}_trial_{params["trial_num"]}.csv', index = False, header=True)
 
     return model, best_precision, best_recall, best_f1
 
-def model_prediction(model, dataloader, path='model/best_bert.pth'):
+def model_prediction(model, dataloader, path='model/best_model.pth'):
     model = model.to(device)
     model.load_state_dict(torch.load(path))
 

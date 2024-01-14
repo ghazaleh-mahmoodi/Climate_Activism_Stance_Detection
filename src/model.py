@@ -28,23 +28,21 @@ class lm_classifier(nn.Module):
   
 class CNNBert(nn.Module):
     
-    def __init__(self, bert, dropout):
+    def __init__(self, bert, dropout, in_channel):
         super(CNNBert, self).__init__()
-        self.bert = bert.to(device)
-        
+        self.bert_model = bert.to(device)
+        self.in_channel = in_channel
         filter_sizes = [1,2,3,4,5]
-        D_in = 768
+        D_in, D_out = 768, 3
         N_filter = 32
         
-        self.convs1 = nn.ModuleList([nn.Conv2d(2, N_filter, (K, D_in)) for K in filter_sizes])
+        self.convs1 = nn.ModuleList([nn.Conv2d(self.in_channel, N_filter, (K, D_in)) for K in filter_sizes])
         self.dropout = nn.Dropout(dropout)
-        self.fc1 = nn.Linear(len(filter_sizes)*N_filter, 3)
-        self.sigmoid = nn.Sigmoid()
-        self.bert_model = bert
+        self.fc1 = nn.Linear(len(filter_sizes)*N_filter, D_out)
         self.softmax = nn.LogSoftmax(dim=1)
 
     def forward(self, input_ids, attention_mask):
-        x = self.bert_model(input_ids, attention_mask=attention_mask)[2][-2:]
+        x = self.bert_model(input_ids, attention_mask=attention_mask)[2][-self.in_channel:]
         x = torch.stack(x, dim=1)
         x = [F.relu(conv(x)).squeeze(3) for conv in self.convs1] 
         x = [F.max_pool1d(i, i.size(2)).squeeze(2) for i in x]  
