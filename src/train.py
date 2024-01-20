@@ -73,11 +73,13 @@ def valid_one_epoch(model,dataloader, criterion):
     f1 = f1_score(actuals, predicted_labels, average='macro')
     return val_loss/len(dataloader), accuracy, precision, recall, f1
 
-def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_weights, total_steps, params, trial):
+def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, semeval_climate_dataloader, semeval_abortion_dataloader, class_weights, total_steps, params, trial):
 
     history = {'train_loss': [], 'train_acc': [], 'train_f1' : [],  'train_recall': [], 'train_precision': [],
                'val_loss': [], 'val_acc': [], 'val_f1' : [], 'val_recall': [], 'val_precision': [],
-               'test_loss': [], 'test_acc': [], 'test_f1' : [], 'test_f1' : [], 'test_recall': [], 'test_precision': []}
+               'test_loss': [], 'test_acc': [], 'test_f1' : [], 'test_recall': [], 'test_precision': [],
+               'semeval_climate_loss': [], 'semeval_climate_acc': [], 'semeval_climate_f1' : [], 'semeval_climate_recall': [], 'semeval_climate_precision': [],
+               'semeval_abortion_loss': [], 'semeval_abortion_acc': [], 'semeval_abortion_f1' : [], 'semeval_abortion_recall': [], 'semeval_abortion_precision': []}
     best_f1 = 0.0
     best_recall = 0.0
     best_precision = 0.0
@@ -110,7 +112,8 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
         train_loss , train_acc, train_precision, train_recall, train_f1 = train_one_epoch(model=model, dataloader=train_dataloader, criterion=criterion, optimizer=optimizer, scheduler=scheduler, trial=trial)
         val_loss , val_acc, val_precision, val_recall, val_f1 = valid_one_epoch(model=model, dataloader=dev_dataloader, criterion=criterion)
         test_loss , test_acc, test_precision, test_recall, test_f1 = valid_one_epoch(model=model, dataloader=test_dataloader, criterion=criterion)
-
+        semeval_climate_loss , semeval_climate_acc, semeval_climate_precision, semeval_climate_recall, semeval_climate_f1= valid_one_epoch(model=model, dataloader=semeval_climate_dataloader, criterion=criterion)
+        semeval_abortion_loss , semeval_abortion_acc, semeval_abortion_precision, semeval_abortion_recall, semeval_abortion_f1= valid_one_epoch(model=model, dataloader=semeval_abortion_dataloader, criterion=criterion)
         print(f"\n Epoch:{epoch + 1} / {NUM_EPOCHS},train loss:{train_loss:.5f}, train acc: {train_acc:.5f}, train f1:{train_f1:.5f}, valid loss:{val_loss:.5f}, valid acc:{val_acc:.5f}, valid f1:{val_f1:.5f}, test loss:{test_loss:.5f}, test acc:{test_acc:.5f}, test f1:{test_f1:.5f}")
 
         history['train_loss'].append(train_loss)
@@ -130,7 +133,19 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
         history['test_recall'].append(test_recall)
         history['test_precision'].append(test_precision)
         history['test_f1'].append(test_f1)
-       
+        
+        history['semeval_climate_loss'].append(semeval_climate_loss)
+        history['semeval_climate_acc'].append(semeval_climate_acc)
+        history['semeval_climate_recall'].append(semeval_climate_recall)
+        history['semeval_climate_precision'].append(semeval_climate_precision)
+        history['semeval_climate_f1'].append(semeval_climate_f1)
+        
+        history['semeval_abortion_loss'].append(semeval_abortion_loss)
+        history['semeval_abortion_acc'].append(semeval_abortion_acc)
+        history['semeval_abortion_recall'].append(semeval_abortion_recall)
+        history['semeval_abortion_precision'].append(semeval_abortion_precision)
+        history['semeval_abortion_f1'].append(semeval_abortion_f1)
+        
 
         if val_f1 > best_f1:
             torch.save(model.state_dict(),'model/best_model.pth')    
@@ -138,13 +153,6 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
             best_precision = val_precision
             best_recall = val_recall
             
-        elif val_f1 == best_f1:
-            break
-        elif val_f1 < 0.40 and epoch > 2:
-            break
-        # elif val_f1 < best_f1:
-        #     break
-        
         trial.report(val_f1, epoch)
 
         if trial.should_prune():
@@ -154,7 +162,7 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
     if best_f1 > F1_THERESHOLD :
         torch.save(model.state_dict(),f'model/best_model_{params["study_name"]}_trial_{params["trial_num"]}.pth')    
         df = pd.DataFrame.from_dict(history)
-        df.to_csv(f'result/report_{params["study_name"]}_trial_{params["trial_num"]}.csv', index = False, header=True)
+        df.to_csv(f'result/report_{params["study_name"]}_trial_{params["trial_num"]}_seed_{seed}.csv', index = False, header=True)
 
     return model, best_precision, best_recall, best_f1
 

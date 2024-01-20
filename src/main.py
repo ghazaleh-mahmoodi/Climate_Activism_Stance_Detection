@@ -22,6 +22,7 @@ def create_submission_file(df_test, path=f'result/submission.json'):
           
 def prepare_dataloader(tokenizer, study_name, data_aug_file, BATCH_SIZE):
     TEXT_COLUMN_NAME = study_name.replace('climate_stance_experiment_on_column_', '').replace('data_aug_', '')
+    TEXT_COLUMN_NAME = TEXT_COLUMN_NAME.replace('_10', '').replace('_20', '').replace('_40', '')
     df_train = pd.read_csv(TRAIN_FILE_PATH)
     X_train = df_train[TEXT_COLUMN_NAME].tolist()
     df_train['label_LM_output'] = df_train['label'] - 1
@@ -60,10 +61,23 @@ def prepare_dataloader(tokenizer, study_name, data_aug_file, BATCH_SIZE):
         testset = ClimateTextDatasetTestPhase(X_test, tokenizer, max_token_len=MAX_LENGHT)
     test_dataloader = DataLoader(testset, batch_size=BATCH_SIZE,shuffle=False)
     
+    df_semeval_climate  = pd.read_csv(SEMEVAL_CLIMATE)
+    X_semeval_climate = df_semeval_climate[TEXT_COLUMN_NAME].tolist()
+    y_semeval_climate = df_semeval_climate['label']
+    semeval_climate_set = ClimateTextDataset(X_semeval_climate, y_semeval_climate, tokenizer, max_token_len=MAX_LENGHT)
+    semeval_climate_dataloader = DataLoader(semeval_climate_set, batch_size=BATCH_SIZE, shuffle=False)
+
+    df_semeval_abortion = pd.read_csv(SEMEVAL_ABORTIPN)
+    X_semeval_abortion = df_semeval_abortion[TEXT_COLUMN_NAME].tolist()
+    y_semeval_abortion = df_semeval_abortion['label']
+    semeval_abortion_set = ClimateTextDataset(X_semeval_abortion, y_semeval_abortion, tokenizer, max_token_len=MAX_LENGHT)
+    semeval_abortion_dataloader = DataLoader(semeval_abortion_set, batch_size=BATCH_SIZE, shuffle=False)
+
+
     class_weights= compute_class_weight('balanced', classes = np.unique(y_train), y = np.array(y_train))
     class_weights= torch.tensor(class_weights,dtype=torch.float).to(device)
 
-    return train_dataloader, dev_dataloader, test_dataloader, class_weights, total_steps, df_dev, df_test
+    return train_dataloader, dev_dataloader, test_dataloader, class_weights, total_steps, df_dev, df_test, semeval_climate_dataloader, semeval_abortion_dataloader
 
 class objective(object):
     def __init__(self, study_name, data_aug_file):
@@ -104,8 +118,9 @@ class objective(object):
         for param in bert.parameters():
             param.requires_grad = True
         
-        train_dataloader, dev_dataloader, test_dataloader, class_weights, total_steps, df_dev, df_test = prepare_dataloader(tokenizer, self.study_name, self.data_aug_file, params['BATCH_SIZE'])
-        model, precision, recall, f1 = train_model(bert, train_dataloader, dev_dataloader, test_dataloader,class_weights, total_steps, params, trial)
+        train_dataloader, dev_dataloader, test_dataloader, class_weights, total_steps, df_dev, df_test, semeval_climate_dataloader, semeval_abortion_dataloader = prepare_dataloader(tokenizer, self.study_name, self.data_aug_file, params['BATCH_SIZE'])
+        
+        model, precision, recall, f1 = train_model(bert, train_dataloader, dev_dataloader, test_dataloader,semeval_climate_dataloader, semeval_abortion_dataloader, class_weights, total_steps, params, trial)
 
         if f1 > F1_THERESHOLD :
             df_dev['prediction'] = model_prediction(model,dev_dataloader)
@@ -126,9 +141,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--study_name", default='tweet')
     parser.add_argument("--data_aug", default='')
+    parser.add_argument("--n_trials", default=2)
+    
     args = parser.parse_args()
     study_name = args.study_name 
     data_aug_file = args.data_aug
+    n_trials = int(args.n_trials)
+    
     if data_aug_file != '':
         optuna_study_name = f"{study_name}_{data_aug_file.replace('data/train_', '').replace('_aug.csv', '')}"
     else:
@@ -136,10 +155,11 @@ if __name__ == "__main__":
     
     study = optuna.create_study(#sampler=TPESampler(seed=42),
                                 direction='maximize',  
-                                storage="sqlite:///stance_experiment.db", 
+                                storage="sqlite:///stance_diffrent_trial_experiment.db", 
                                 study_name=optuna_study_name,
-                                load_if_exists=True)
-    study.optimize(objective(study_name, data_aug_file), n_trials = 20, timeout = 120000)
+                                load_if_exists=True
+                                )
+    study.optimize(objective(study_name, data_aug_file), n_trials = n_trials, timeout = 120000)
 
     df = study.trials_dataframe()
     df.to_csv(f'{study_name}_optuna_report.csv')

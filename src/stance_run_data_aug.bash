@@ -16,6 +16,6 @@ for aug_file in "${data_augmentation_file[@]}"
             study_name="climate_stance_experiment_on_column_data_aug_${column_name}" 
             echo ${aug_file}  
             echo ${study_name}  
-            python main.py --study_name ${study_name} --data_aug ${aug_file}
+            # python main.py --study_name ${study_name} --data_aug ${aug_file}
         done
     done
