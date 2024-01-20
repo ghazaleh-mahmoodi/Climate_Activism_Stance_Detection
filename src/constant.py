@@ -3,6 +3,5 @@ DEV_FILE_PATH = 'data/dev_clean.csv'
 TEST_FILE_PATH = 'data/test_clean.csv'
 
 MAX_LENGHT = 128
-NUM_EPOCHS = 8
-BATCH_SIZE = 4
+NUM_EPOCHS = 5
 F1_THERESHOLD = 0.66

@@ -125,23 +125,26 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
         history['val_precision'].append(val_precision)
         history['val_f1'].append(val_f1)
         
-        history['test_loss'].append(train_loss)
-        history['test_acc'].append(train_acc)
+        history['test_loss'].append(test_loss)
+        history['test_acc'].append(test_acc)
         history['test_recall'].append(test_recall)
         history['test_precision'].append(test_precision)
-        history['test_f1'].append(train_f1)
+        history['test_f1'].append(test_f1)
        
 
         if val_f1 > best_f1:
-            if val_f1 > F1_THERESHOLD:
-                torch.save(model.state_dict(),'model/best_model.pth')
+            torch.save(model.state_dict(),'model/best_model.pth')    
             best_f1 = val_f1
             best_precision = val_precision
             best_recall = val_recall
+            
         elif val_f1 == best_f1:
             break
-        elif val_f1 < 0.40:
+        elif val_f1 < 0.40 and epoch > 2:
             break
+        # elif val_f1 < best_f1:
+        #     break
+        
         trial.report(val_f1, epoch)
 
         if trial.should_prune():
@@ -149,8 +152,7 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, class_w
             raise optuna.TrialPruned()
     
     if best_f1 > F1_THERESHOLD :
-        torch.save(model.state_dict(),f'model/best_model_{params["study_name"]}_{params["trial_num"]}_trial_{params["trial_num"]}.pth')
-        torch.save(model.state_dict(),'model/best_model.pth')
+        torch.save(model.state_dict(),f'model/best_model_{params["study_name"]}_trial_{params["trial_num"]}.pth')    
         df = pd.DataFrame.from_dict(history)
         df.to_csv(f'result/report_{params["study_name"]}_trial_{params["trial_num"]}.csv', index = False, header=True)
 
