@@ -17,4 +17,3 @@ for trial in "${trials[@]}"
             python main.py --study_name ${study_name} --n_trials ${trial}
         done
     done
-    

@@ -146,15 +146,20 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, semeval
         history['semeval_abortion_precision'].append(semeval_abortion_precision)
         history['semeval_abortion_f1'].append(semeval_abortion_f1)
         
+        trial.report(val_f1, epoch)
 
         if val_f1 > best_f1:
             torch.save(model.state_dict(),'model/best_model.pth')    
             best_f1 = val_f1
             best_precision = val_precision
             best_recall = val_recall
+        
+        elif val_f1 == best_f1:
+            break
+        
+        elif val_f1 < 0.40:
+            break
             
-        trial.report(val_f1, epoch)
-
         if trial.should_prune():
             print("prune!")
             raise optuna.TrialPruned()
@@ -162,7 +167,7 @@ def train_model(bert, train_dataloader, dev_dataloader, test_dataloader, semeval
     if best_f1 > F1_THERESHOLD :
         torch.save(model.state_dict(),f'model/best_model_{params["study_name"]}_trial_{params["trial_num"]}.pth')    
         df = pd.DataFrame.from_dict(history)
-        df.to_csv(f'result/report_{params["study_name"]}_trial_{params["trial_num"]}_seed_{seed}.csv', index = False, header=True)
+        df.to_csv(f'result/report_{params["study_name"]}_trial_{params["trial_num"]}.csv', index = False, header=True)
 
     return model, best_precision, best_recall, best_f1
 

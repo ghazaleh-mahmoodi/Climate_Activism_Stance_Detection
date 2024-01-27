@@ -6,4 +6,4 @@ SEMEVAL_CLIMATE = 'data/semeval_climate_clean.csv'
 
 MAX_LENGHT = 128
 NUM_EPOCHS = 8
-F1_THERESHOLD = 0.68
+F1_THERESHOLD = 0.66
