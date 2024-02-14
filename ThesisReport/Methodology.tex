@@ -1,0 +1,270 @@
+%!TeX root=main.tex
+
+\chapter{روش تحقیق یا کارهای انجام شده}
+\thispagestyle{empty}
+در بخش‌های قبل تعریف مسئله و کارهای پیشین بیان شد. در این فصل به شرح آزمایش‌های رویداد 
+\lr{Climate Activism}
+و رویکرد 
+\lr{zero shot}
+می‌پردازیم.
+
+\section{روش پیشنهادی برای}
+
+\subsection{مجموعه داده}
+
+\begin{table}[ht]
+	\centering
+	\small
+	\begin{tabular}{ c|c|   c c c}
+		\hline
+		Split & \% & Support & Neutral &  Against\\
+		\hline
+		\hline
+		Train & 70\% & 4328 & 2256 & 700 \\
+		Dev & 15\% & 897 & 511 & 153  \\  
+		Test & 15\% & 921 & 500 & 141\\
+		\hline
+		\hline
+		All & 100\% & 6146 & 3276  & 994 \\
+		\hline
+	\end{tabular}
+	\caption{\label{dataset-statistics} Class distribution of stance detection dataset}
+\end{table}
+
+
+\subsection{روش پیشنهادی}
+روش پیشنهادی چند بخش می‌شود که در ادامه به توضیح هر یک از بخش‌ها می‌پردازیم.
+
+\subsubsection{تمیز کردن داده‌ها}
+آماده‌سازی داده‌های مناسب و با کیفیت یکی از مهم‌ترین بخش‌های آموزش یک مدل یادیگری عمیق است. داده‌های متنی شبکه‌های اجتماعی (همانند توییتر) معمولا شامل نویز و مواردی هستند که ممکن است مدل را به اشتباه بندازد.
+
+در فرآیند آماده‌سازی داده‌ها رویکرد اصلی این است که هیچ داده‌ را دور نریزیم و از داده‌های متنی موجود حداکثر استفاده را بکنیم. منتها چون داده‌های ما محدود هستند، وجود نویز در داده‌ها ممکن است آموزش مدل را با مشکل روبرو کند. در ادامه بر اساس مشاهدات هفت رویکرد برای تمیز کردن داده را معرفی کردیم.
+\begin{enumerate}
+	\item نگهداشت داده‌های اصلی:
+
+در این رویکرد فرض کردیم بهترین روش عدم تغییر در داده‌های اصلی می‌باشد. در این روش متن داده‌های موجود را بدون هیچ تغییری به عنوان ورودی به مدل می‌دهیم.
+	\item حذف لینک‌های موجود:
+	
+	با توجه به اینکه اغلب لینک‌ها به صورت مختصر وجود داشتند در این رویکرد تنها
+	\lr{url}
+	های موجود در متن را حذف کردیم.
+	\item حذف نام‌کاربری:
+فرض ما این است وجود 
+\lr{user name}
+بدون اینکه اطلاعات دیگری از کابران داشته باشیم بیشتر موجب گمراهی مدل می‌شود. برای بررسی صحت فرض مطرح شده، این رویکرد را نیز در آزمایش‌های خود قرار دادیم.
+	\item حذف نام کاربری و لینک به صورت همزمان:
+رویکرد دوم و سوم را برای بررسی اقربخشی همزمان آن‌ها با هم اعمال کردیم.
+
+	\item حذف نام کاربری و لینک به صورت همزمان و جدا کردن هشتک:
+	
+در شبکه‌های اجتماعی همچون توییتر برای بیشتر دیده شده توییت‌ها و همراهی با رویدادی خاص گاها در هشتک‌هایی در متن اصلی توییت استفاده می‌کنندو استفاده از  هشتک‌ها سرچ آن‌ها را نیز ساده‌تر می‌کند. در این رویکرد برای تمیز کردن داده‌ها هشتک‌ها استفاده کردیم به گونه‌ای 
+ \lr{\texttt{\#FridaysForFuture} }
+به
+ \lr{\texttt{Fridays For Future}}
+ تبدیل می‌شود. بعد از جداسازی کلمات احتمالا عبارت با مفهوم‌تری داشته باشیم.
+ 
+	\item حذف نام کاربری و لینک به صورت همزمان و جدا مردن هشتک و کوچک کردن حروف:
+	
+	یکی دیگر از روش‌های تمیز 
+	\item تمیز کردن کامل داده‌ها:
+\end{enumerate}
+
+\subsection{معماری پیشنهادی}
+
+در این پژوهش، یک روش جسنجو سیستماتیک برای پیشنهاد بهترین مدل برای 
+ما مدلی متشکل از چهار ماژول پیشنهاد کردیم، و برای تعیین مناسب‌ترین پارامترها برای هر ماژول، آزمایش‌های متعددی را با پیکربندی‌های مختلف انجام دادیم و مقادیر بهینه را در فضای جستجوی تعریف‌شده جستجو کردیم (جدول\ref{Architecture-search-space}). با استفاده از کتابخانه
+\lr{Optuna} 
+، که از نمونه‌بردار با استفاده از الگوریتم 
+\lr{TPE (Tree-structured Parzen Estimator) }
+استفاده می‌کند، ما پیکربندی مدل بهینه را بر اساس امتیاز
+\lr{Macro-F1} 
+در مجموعه توسعه انتخاب کردیم. در ادامه به توضیح مختصری از فضای جستجوی تعریف شده برای هر ماژول می پردازیم
+\begin{enumerate}
+	\item بازتمایی کلمات
+	\item رده‌بند
+	\item بهینه‌ساز
+	\item تابع ضرر
+\end{enumerate}
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c  |c }
+		\hline
+		Parameter & Search Space\\
+		\hline
+		Classifier & $[MLP, CNN]$\\
+		N\_last\_layer & [1, 2, 3, 4, 5]\\
+		Optimizer & $[Adam, AdamW, RMSprop, SGD]$\\
+		Loss & $[Cross Entropy, Focal]$\\
+		
+		
+		\hline
+		\hline
+	\end{tabular}
+	
+	\centering
+	\caption{\label{Architecture-search-space}Architecture search space}
+\end{table}
+
+فضا جستجو تعریف شده برای ابرپارامترها در جدول \ref{hyperparam-search-space} قابل مشاهده است.
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{c  |c }
+		\hline
+		Parameter & Search Space\\
+		\hline
+		Dropout  &  $[0.1 :  0.5]$\\
+		Learning Rate & $[1e^{-5} :  1e^{-2}]$\\
+		Batch Size & $[4, 8]$\\
+		Focal\_gamma & $[1, 2, 3, 4, 5]$\\
+		\hline
+		\hline
+	\end{tabular}
+    \centering
+\caption{\label{hyperparam-search-space}Hyperparameters search space}
+\end{table}
+\subsection{نتایج به دست آمده}
+
+\begin{table*}[h!]
+	\centering
+%	\tiny
+	\scriptsize
+	\begin{tabular}{c  |c |c c  c  c|c c  c  c}
+		\hline
+		%Accuracy
+		Cleaning & Aug &  Embedding&Classifier & Loss & Optimizer &  F1-Score & Recall & Precision& Accuracy\\
+		\hline
+		%report_climate_stance_experiment_on_column_tweet_trial_2
+		% , D=0.5 0.68822023
+
+		
+		C1 & - &RoBERTa&  CNN(N=1)& WCE & SGD &  71.74 & 69.94 & 74.83& 68.82\\
+		% \tablespace
+\hline
+\hline
+		% \tablespace
+		%report_climate_stance_experiment_on_column_tweet_remove_url_trial_13 ACC = 0.6491
+		% , D=0.2
+		C2 & - & XLM-RoBERTa  & CNN(N=3)& WCE & AdamW &  69.80 & 69.38 & 74.16&64.91\\ 
+		%report_climate_stance_experiment_on_column_tweet_remove_url_trial_19
+		% , D=0.4
+		C2 & - & BERT& CNN(N=2)& WCE & SGD &  70.28 & 68.64 & 73.82&66.00\\
+		%report_climate_stance_experiment_on_column_tweet_remove_username_trial_3
+		%        0.73815621	0.71894142	0.688951494	0.795527692
+		% (D=0.4)
+		
+		% report_climate_stance_experiment_on_column_data_aug_tweet_remove_url_trial_0
+		% 0.701664533	0.687506824	0.662705354	0.752605222
+		C2 & + & BERT& CNN(N=3) &  WCE&SGD & 68.75 & 66.27 & 75.26& 70.16\\
+		
+\hline
+\hline
+		C3 & - & RoBERTa&  FNN & WCE & SGD & 71.89 & 68.89 & 79.55&73.81\\
+		
+		%report_climate_stance_experiment_on_column_data_aug_tweet_remove_username_trial_4
+		C3 & + & XLM-RoBERTa&  CNN(N=3) & F(g=4) & SGD & 68.59 & 68.51 & 75.93& 69.84\\
+\hline
+\hline
+		%report_climate_stance_experiment_on_column_tweet_remove_url_username_trial_0
+		% 0.695262484	0.71827397	0.695655047	0.748081657
+		% - & - &  - & - &  - & - & -\\
+		% , D=0.4
+		C4 & - & XLM-RoBERTa  &CNN (N=4)&  WCE & RMSprop&  71.82 & 69.56 & 74.80&69.52\\
+		%trial_2
+		%0.728553137	0.723104075	0.696190696	0.769851624
+		% , D=0.5
+		C4 & - &BERT& CNN(N=5) &  WCE & SGD &  72.82 & 69.56 & 74.80&72.85\\
+		%trial_4
+		%0.725992318	0.739746891	0.70919688	0.781799265
+		% , D=0.2
+		C4& - &XLM-RoBERTa & CNN(N=3) &  F(g=1)&SGD &  \textbf{73.97} & \textbf{70.91} & \textbf{78.17} & \textbf{72.59}\\
+		%trial_12
+		%0.710627401	0.715227463	0.683140419	0.766553658
+		%(D=0.5)
+		C4& - &RoBERTa& FNN &  WCE&RMSprop &  71.52 & 68.31 & 78.17&70.06\\
+		%trial_15
+		%0.731754161	0.727294616	0.693864994	0.788514218
+		%, D=0.3
+		C4& - & XLM-RoBERTa &CNN(N=4) &  WCE&SGD &  72.72 & 69.38 & 78.85&73.17\\
+		%report_climate_stance_experiment_on_column_data_aug_tweet_remove_url_username_trial_0
+		%0.741357234	0.748312045	0.71640203	0.794630353
+		
+		% C4& \Checkmark &  BERTweet&CNN(\textbf{N=5}) &  \textbf{WCE}&\textbf{SGD} &  \textbf{74.83} &\textbf{ 71.64} &\textbf{ 79.46}&\textbf{74.13}\\
+		
+		C4& + &  BERTweet&CNN(N=5) &  WCE&SGD &  \textbf{74.47} & \textbf{70.31} & \textbf{79.31}&\textbf{73.11}\\
+		%report_climate_stance_experiment_on_column_data_aug_tweet_remove_url_username_trial_2
+		%0.701664533	0.706468713	0.675635533	0.756350482
+		
+		C4& + & BERT &CNN(N=4) &  WCE&SGD &  70.64 & 67.75 & 75.63& 70.01\\
+		
+\hline
+\hline
+		% report_climate_stance_experiment_on_column_tweet_remove_url_username_splite_hasghtag_trial_2
+		%trial_2
+		%0.677336748	0.713373105	0.687480629	0.754339459
+		% (D=0.1)
+		C5 & -&DEBERTA &  FNN & WCE & Adam &  71.33 & 68.78 & 75.43&67.73\\
+		%trial_5
+		%0.721510883	0.727001956	0.6963022	0.771830242
+		% , D=0.2
+		C5 & - &XLM-RoBERTa  &  CNN(N=2) & WCE&SGD &  72.70 & 69.63 & 77.18&72.15\\
+		%trial_10
+		%0.715108835	0.72019216	0.68628338	0.774418685
+		% (D=0.2)
+		C5 & -&BERT &  FNN & F(g=1)&SGD &  72.01 & 68.62 & 77.44&71.75\\
+		
+		% report_climate_stance_experiment_on_column_data_aug_tweet_remove_url_username_splite_hasghtag_trial_2
+		%0.727272727	0.71209454	0.685105644	0.776805868
+		
+		C5 & + &DEBERTA &  FNN & WCE&AdamW &  71.20 & 68.51 & 77.68&72.72\\
+		
+		%report_climate_stance_experiment_on_column_data_aug_tweet_remove_url_username_splite_hasghtag_trial_17
+		%0.672215109	0.708500465	0.700169674	0.73417312
+		
+		C5 & +&BERT &  CNN(N=3) & WCE&SGD &  70.85 & 70.01 & 73.41&67.22\\
+\hline
+\hline
+		
+		%report_climate_stance_experiment_on_column_tweet_remove_url_username_splite_hasghtag_lower_case
+		%trial_1
+		%0.722151088	0.718343626	0.683864994	0.784830121
+		% (D=0.4)
+		C6 & - &BERT& FNN& F(g=2) & SGD &   71.83 & 68.38 & 74.48& 72.21\\
+		%trial_13
+		%0.696542894	0.701349897	0.671825906	0.748594973
+		% (D=.4)
+		C6 & - &BERT& FNN& WCE&RMSProp &   70.13 & 67.18 & 74.85& 69.65\\
+		
+		%report_climate_stance_experiment_on_column_data_aug_tweet_remove_url_username_splite_hasghtag_lower_case_trial_18
+		%0.7285531370038413,0.7270587455031999,0.6943622488660952,0.7856136456290003
+		C6 & + &XLM-RoBERTa& CNN(N=4)& WCE&SGD &   72.70 & 69.43 & 78.56& 72.85\\
+\hline
+\hline
+		%complete_cleaning_trial_4
+		%0.717669654	0.716878055	0.687731082	0.765389515
+		% , D:0.4
+		C7 & - & BERT& CNN(N=5) &  F(g=1)&SGD & 71.68 & 68.77 & 76.53& 71.76\\
+		
+		% - & - &  FNN (DropOut=0.5)& roberta  + focal (gamma = 1) + SGD &  71.88 & 68.91 & 79.94\\
+		% report_climate_stance_experiment_on_column_data_aug_tweet_complete_cleaning_trial_12
+		%0.69206146	0.693698466	0.665635533	0.740977027
+		
+		C7 & +  & BERTweet& CNN(N=2) &  F(g=4)&AdamW & 69.36 & 66.56 & 74.09& 69.06\\
+		\hline
+		\hline
+		
+		% - & - &  FNN (DropOut=0.5)& roberta  + focal (gamma = 1) + SGD &  71.88 & 68.91 & 79.94\\
+		\hline
+		\hline
+	\end{tabular}
+	
+	\centering
+	\caption{\label{result}\lr{Experiment configuration and result on climate stance detection test data. \\\textbf{Data Cleaning Approuch}(C1:Original Tweet Text, C2:Removing URL, C3:Removing username, C4:Removing URL and username, C5:Removing URL and username and split hashtag, C6:Removing URL and username, split hashtag, and convert all letters to lowercase, C7:Complete cleaning). 
+		\textbf{Classifier}(CNN: Convolutional Neural Networks, FNN: Fully Connected Neural Networks).  
+		\textbf{Loss Function}(WCE:Weighted Cross Entropy Loss, F:Focal Loss, g:Gamma parameter in focal loss).  }
+		% \textbf{Data AUG Approuch}: 
+	}
+\end{table*}
+
+

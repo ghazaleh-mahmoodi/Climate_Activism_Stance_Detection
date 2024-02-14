@@ -1,0 +1,32 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2-1}{\ignorespaces نمونه‌ای از مجموعه داده \lr {SemEval}}}{5}{table.2.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3-1}{\ignorespaces نمونه پرامپت برای مسئله تحلیل احساسات }}{16}{table.3.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4-1}{\ignorespaces نتایج رویداد \lr {ClimateActivismStance} برای زیر مسئله سوم (تشخیص موضع)}}{26}{table.4.1}%
+\contentsline {table}{\numberline {4-2}{\ignorespaces توزیع نمونە ها در مجموعه داده \lr {Multi-Target}}}{27}{table.4.2}%
+\contentsline {table}{\numberline {4-3}{\ignorespaces چند نمونه از دادە‌های مجموعه داده \lr {SemEval}}}{28}{table.4.3}%
+\contentsline {table}{\numberline {4-4}{\ignorespaces چند نمونه از دادە‌های مجموعه داده \lr {ClimaConvo}}}{29}{table.4.4}%
+\contentsline {table}{\numberline {4-5}{\ignorespaces چند نمونه از دادە‌های مجموعه داده \lr {ClimaConvo}}}{30}{table.4.5}%
+\contentsline {table}{\numberline {4-6}{\ignorespaces چند نمونه از پژوهش‌های مسئله تشخیص موضع}}{33}{table.4.6}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5-1}{\ignorespaces توزیع کلاس‌ها در بخش‌های آموزش، توسعه و ارزیابی مجموعه داده \lr {ClimaConvo}}}{39}{table.5.1}%
+\contentsline {table}{\numberline {5-2}{\ignorespaces توزیع کلاس‌ها در بخش‌های ارزیابی مجموعه داده \lr {SemEval}}}{40}{table.5.2}%
+\contentsline {table}{\numberline {5-3}{\ignorespaces فضای جستجو معماری پیشنهادی}}{43}{table.5.3}%
+\contentsline {table}{\numberline {5-4}{\ignorespaces فضا جستجو ابرپارامترها}}{46}{table.5.4}%
+\contentsline {table}{\numberline {5-5}{\ignorespaces نتایج به دست آمده بر روی مجموعه داده \lr {ClimateCanvo Stance} بخش ارزیابی. }}{48}{table.5.5}%
+\contentsline {table}{\numberline {5-6}{\ignorespaces مقایسه بهترین معماری طراحی شده با مدل پایه.}}{48}{table.5.6}%
+\contentsline {table}{\numberline {5-7}{\ignorespaces پارامترهای بهترین مدل پیشنهادی.}}{49}{table.5.7}%
+\contentsline {table}{\numberline {5-8}{\ignorespaces نتایج بررسی اثربخشی نوع پیش‌پردازش داده}}{50}{table.5.8}%
+\contentsline {table}{\numberline {5-9}{\ignorespaces نتایج بررسی اثربخشی افزایش داده. }}{52}{table.5.9}%
+\contentsline {table}{\numberline {5-10}{\ignorespaces نتایج بررسی اثربخشی افزایش داده به ازای هر کلاس}}{52}{table.5.10}%
+\contentsline {table}{\numberline {5-11}{\ignorespaces نتایج بررسی اثربخشی رده‌بند}}{53}{table.5.11}%
+\contentsline {table}{\numberline {5-12}{\ignorespaces نتایج بررسی اثربخشی تابع ضرر بر حسب \lr {F1-Score} .}}{54}{table.5.12}%
+\contentsline {table}{\numberline {5-13}{\ignorespaces بررسی تاثیر دامنه بر نتایج مدل آموزش دیده بر اساس معیار \lr {F1-Score}.}}{54}{table.5.13}%
+\contentsline {table}{\numberline {5-14}{\ignorespaces چند نمونه پیشبینی‌های اشتباه مدل}}{55}{table.5.14}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6-1}{\ignorespaces مقایسه نتایج پرامپت‌های معرفی شده با سایر مدل‌های \lr {Zero-Shot}}}{64}{table.6.1}%
+\contentsline {table}{\numberline {6-2}{\ignorespaces نتایج پرامپت‌های معرفی شده روی مجموعه داده \lr {ClimaConvo}.}}{64}{table.6.2}%
+\contentsline {table}{\numberline {6-3}{\ignorespaces تاثیر پیش‌پردازش داده‌ها در نتایج به دست آمده}}{65}{table.6.3}%
+\addvspace {10\p@ }

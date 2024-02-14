@@ -1,0 +1,61 @@
+% !TeX document-id = {a20f43b2-ab4e-4871-aad0-cb417dac4610}
+% !TEX TS-program = xelatex
+% Commands for running this example:
+% 	 xelatex main
+% 	 bibtex8 -W -c cp1256fa main
+%      xindy -L persian -C utf8 -M texindy main
+% 	 xelatex main
+% 	 xelatex main
+% End of Commands
+
+
+\documentclass[oneside,openany,msc]{IUST-Thesis}
+\usepackage{xcolor}
+\usepackage[many]{tcolorbox}    	% for COLORED BOXES (tikz and xcolor included)
+\usepackage{mathspec} 			    % for FONTS
+\usepackage{setspace}               % for LINE SPACING
+\usepackage{multicol}               % for MULTICOLUMNS
+\usepackage{multirow}
+%\usepackage{graphicx}
+%\usepackage{arydshln}
+%\usepackage{bbding}
+\usepackage{tablefootnote}
+
+\input{commands}
+
+\begin{document}
+
+\pagenumbering{harfi}
+\input{faTitle}
+
+\tableofcontents \newpage
+\listoffigures   \newpage
+\listoftables    \newpage
+
+\pagestyle{fancy}
+\include{intro}
+\include{stance_defenition}
+\include{background}
+\include{relatedworks}
+\include{training_method}
+\include{zeroshot_method} 
+\include{conclusion}
+
+\pagestyle{empty}
+{
+\onehalfspacing
+\bibliographystyle{acm-fa}%{plainnat-fa}%{chicago-fa}%{acm-fa}
+\bibliography{Ref}
+}
+
+\pagestyle{fancy}
+
+\onehalfspacing
+\include{dicfa2en}
+\include{dicen2fa}
+\printindex
+
+\input{enTitle}
+\label{LastPage}
+
+\end{document}

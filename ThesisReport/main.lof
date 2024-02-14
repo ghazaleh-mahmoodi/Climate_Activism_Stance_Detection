@@ -1,0 +1,36 @@
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1-1}{\ignorespaces تشخیص موضع در شبکه‌های اجتماعی}}{2}{figure.1.1}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2-1}{\ignorespaces توزیع برچسب‌های تحلیل احساسات نسبت به برچسب‌های تشخیص موضع}}{5}{figure.2.1}%
+\contentsline {figure}{\numberline {2-2}{\ignorespaces موضوعات تحقیقاتی مرتبط با تشخیص موضع}}{6}{figure.2.2}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3-1}{\ignorespaces تولید بازنمایی متن با استفاده از شبکه \lr {CNN}}}{12}{figure.3.1}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4-1}{\ignorespaces نمودار تعداد مقالات چاپ شده در رابطه با تشخیص موضع به تفکیک سال}}{19}{figure.4.1}%
+\contentsline {figure}{\numberline {4-2}{\ignorespaces مروری بر ویژگی‌های مورد استفاده در تشخیص موضع }}{31}{figure.4.2}%
+\contentsline {figure}{\numberline {4-3}{\ignorespaces معماری روش مبتنی بر \lr {Classifier Stacked}}}{32}{figure.4.3}%
+\contentsline {figure}{\numberline {4-4}{\ignorespaces معماری مدل \lr {BiCond}}}{34}{figure.4.4}%
+\contentsline {figure}{\numberline {4-5}{\ignorespaces معماری مدل \lr {PNEM}}}{35}{figure.4.5}%
+\contentsline {figure}{\numberline {4-6}{\ignorespaces معماری مدل \lr {MeLT}}}{36}{figure.4.6}%
+\contentsline {figure}{\numberline {4-7}{\ignorespaces معماری مدل \lr {BiCond}}}{36}{figure.4.7}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5-1}{\ignorespaces توزیع تعداد تک واژهای مجموعه داده \lr {ClimaConvo} }}{39}{figure.5.1}%
+\contentsline {figure}{\numberline {5-2}{\ignorespaces توزیع کلاس‌ها قبل و بعد از افزایش داده.}}{42}{figure.5.2}%
+\contentsline {figure}{\numberline {5-3}{\ignorespaces رده‌بند با شبکه عصبی پیچشی}}{44}{figure.5.3}%
+\contentsline {figure}{\numberline {5-4}{\ignorespaces عملکرد مدل آموزش دیده در هر \lr {epoch} آموزش}}{49}{figure.5.4}%
+\contentsline {figure}{\numberline {5-5}{\ignorespaces مقدار \lr {F1-Score} هر یک از تکنیک‌های پیش‌پردازش داده}}{51}{figure.5.5}%
+\contentsline {figure}{\numberline {5-6}{\ignorespaces بازه اطمینان مدل پیشنهادی بر اساس روش‌های پیش‌پردازش داده}}{51}{figure.5.6}%
+\contentsline {figure}{\numberline {5-7}{\ignorespaces بازه اطمینان مدل پیشنهادی آموزش دیده با داده‌های افزایش داده‌ شده}}{52}{figure.5.7}%
+\contentsline {figure}{\numberline {5-8}{\ignorespaces ماتریس درهمریختگی برای داده ارزیابی مجموعه \lr {ClimaConvo}}}{55}{figure.5.8}%
+\contentsline {figure}{\numberline {5-9}{\ignorespaces خروجی میزان توجه مدل به کلمات ورودی برای پیشبینی‌های درست}}{56}{figure.5.9}%
+\contentsline {figure}{\numberline {5-10}{\ignorespaces خروجی میزان توجه مدل به کلمات ورودی برای پیشبینی‌های اشتباه}}{56}{figure.5.10}%
+\contentsline {figure}{\numberline {5-11}{\ignorespaces میزان مصرف \lr {GPU}در زمان آموزش مدل پیشنهادی}}{58}{figure.5.11}%
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6-1}{\ignorespaces الگو پرامپت \lr {Zero Shot}}}{60}{figure.6.1}%
+\contentsline {figure}{\numberline {6-2}{\ignorespaces الگو پرامپت \lr {Zero Shot + Chain of Thought}}}{61}{figure.6.2}%
+\contentsline {figure}{\numberline {6-3}{\ignorespaces الگو پرامپت \lr {Zero Shot + Chain of Thought + Context Description}}}{62}{figure.6.3}%
+\contentsline {figure}{\numberline {6-4}{\ignorespaces الگو پرامپت \lr {Few Shot + Chain of Thought + Context Description}}}{63}{figure.6.4}%
+\contentsline {figure}{\numberline {6-5}{\ignorespaces مقدار \lr {F1-Score} هر یک از تکنیک‌های پیش‌پردازش داده}}{65}{figure.6.5}%
+\contentsline {figure}{\numberline {6-6}{\ignorespaces مقدار \lr {F1-Score} هر یک از تکنیک‌های پیش‌پردازش داده}}{65}{figure.6.6}%
+\contentsline {figure}{\numberline {6-7}{\ignorespaces میزان مصرف \lr {GPU}در زمان اجرا آزمایش‌های مدل‌های زبانی بزرگ}}{66}{figure.6.7}%
+\addvspace {10\p@ }

@@ -1,0 +1,77 @@
+\contentsline {chapter}{فهرست شکل‌ها}{د}{section*.1}%
+\contentsline {chapter}{فهرست ‌جدول‌ها}{ر}{section*.2}%
+\contentsline {chapter}{\numberline {1}مقدمه}{1}{chapter.1}%
+\contentsline {section}{\numberline {1-1}تعریف مسئله تشخیص موضع}{2}{section.1.1}%
+\contentsline {section}{\numberline {1-2}ساختار پایان‌نامه}{3}{section.1.2}%
+\contentsline {chapter}{\numberline {2}تعریف مسئله}{1}{chapter.2}%
+\contentsline {section}{\numberline {2-1}سطوح مسئله تشخیص موضع}{1}{section.2.1}%
+\contentsline {section}{\numberline {2-2}تقسیم بندی تشخیص موضع بر اساس موضوع}{2}{section.2.2}%
+\contentsline {subsection}{\numberline {2-2-1}تشخیص موضع برای یک موضوع خاص}{2}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2-2-2}تشخیص موضع برای موضوعات چندگانه مرتبط}{3}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2-2-3}تشخیص موضع ادعا محور}{3}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2-2-4}تفاوت تشخیص موضع و تحلیل احساسات}{4}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2-2-5}کاربردهای تشخیص موضع}{6}{subsection.2.2.5}%
+\contentsline {chapter}{\numberline {3}تعاریف و مفاهیم ابتدایی}{8}{chapter.3}%
+\contentsline {section}{\numberline {3-1}شبکه‌های اجتماعی}{8}{section.3.1}%
+\contentsline {section}{\numberline {3-2}هوش مصنوعی}{9}{section.3.2}%
+\contentsline {section}{\numberline {3-3}پردازش زبان طبیعی}{9}{section.3.3}%
+\contentsline {section}{\numberline {3-4}تعبیه کلمات}{10}{section.3.4}%
+\contentsline {section}{\numberline {3-5}یادگیری ماشین}{13}{section.3.5}%
+\contentsline {section}{\numberline {3-6}یادگیری عمیق}{13}{section.3.6}%
+\contentsline {section}{\numberline {3-7}شبکه‌های عصبی همگشتی}{14}{section.3.7}%
+\contentsline {section}{\numberline {3-8}ساز و کار توجه }{15}{section.3.8}%
+\contentsline {section}{\numberline {3-9}ترنسفورمر}{16}{section.3.9}%
+\contentsline {section}{\numberline {3-10}مهندسی پرامپت}{16}{section.3.10}%
+\contentsline {section}{\numberline {3-11}جستجو پارامترها}{17}{section.3.11}%
+\contentsline {section}{\numberline {3-12}جمع بندی}{18}{section.3.12}%
+\contentsline {chapter}{\numberline {4}مروری بر کار‌های مرتبط}{19}{chapter.4}%
+\contentsline {section}{\numberline {4-1}رقابت‌های برگزار شده در مسئله تشخیص موضع}{20}{section.4.1}%
+\contentsline {subsection}{\numberline {4-1-1}رویداد \lr {SemEval-2016}}{20}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4-1-2}رویداد \lr {NLPCC-ICCPOL-2016}}{21}{subsection.4.1.2}%
+\contentsline {subsection}{\numberline {4-1-3}رویداد \lr {IberEval-2017}}{22}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4-1-4}رویداد \lr {SadriStance@EVALITA-2020}}{22}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4-1-5}رویداد \lr {VaxxStance@IberLFE-2021}}{24}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4-1-6}رویداد \lr {ClimateActivismStance@CASE-2024}}{25}{subsection.4.1.6}%
+\contentsline {section}{\numberline {4-2}مجموعه داده‌های مسئله تشخیص موضع}{26}{section.4.2}%
+\contentsline {subsection}{\numberline {4-2-1}مجموعه داده \lr {SemEval-2016} }{28}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4-2-2}مجموعه داده \lr {ClimaConvo} }{29}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4-3}پژوهش‌های انجام شده در مسئله تشخیص موضع}{30}{section.4.3}%
+\contentsline {subsection}{\numberline {4-3-1}رویکردهای یادگیری ماشین مبتنی بر ویژگی}{31}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4-3-2}رویکردهای یادگیری عمیق}{32}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4-3-3}مدل‌های از قبل آموزش دیده}{34}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4-4}معیار ارزیابی مسئله تشخیص موضع}{37}{section.4.4}%
+\contentsline {chapter}{\numberline {5}روش پیشنهادی برای تشخیص موضع با نظارت}{38}{chapter.5}%
+\contentsline {section}{\numberline {5-1}دادگان آموزشی}{39}{section.5.1}%
+\contentsline {section}{\numberline {5-2}روش حل مسئله}{40}{section.5.2}%
+\contentsline {subsection}{\numberline {5-2-1}پیش‌پردازش داده‌ها}{40}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5-2-2}افزایش داده}{42}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5-2-3}جستجو معماری}{43}{subsection.5.2.3}%
+\contentsline {subsection}{\numberline {5-2-4}انتخاب ابرپارامترها}{45}{subsection.5.2.4}%
+\contentsline {section}{\numberline {5-3}آزمایش‌ها و تحلیل نتایج}{46}{section.5.3}%
+\contentsline {subsection}{\numberline {5-3-1}گام اول : تحلیل نحوه عملکرد الگوریتم جستجو}{46}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5-3-2}گام دوم : به دست آوردن پارامترهای مدل با عملکرد مطلوب }{47}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5-3-3}گام سوم : ارزیابی تکمیلی مدل پیشنهادی}{49}{subsection.5.3.3}%
+\contentsline {subsubsection}{\numberline {5-3-3-1}اثربخشی نوع پیش‌پردازش داده}{50}{subsubsection.5.3.3.1}%
+\contentsline {subsubsection}{\numberline {5-3-3-2}اثربخشی افزایش داده}{51}{subsubsection.5.3.3.2}%
+\contentsline {subsubsection}{\numberline {5-3-3-3}اثربخشی رده‌بند}{53}{subsubsection.5.3.3.3}%
+\contentsline {subsubsection}{\numberline {5-3-3-4}اثربخشی تابع ضرر}{53}{subsubsection.5.3.3.4}%
+\contentsline {subsubsection}{\numberline {5-3-3-5}بررسی تاثیر دامنه بر نتایج مدل آموزش دیده}{54}{subsubsection.5.3.3.5}%
+\contentsline {subsection}{\numberline {5-3-4}تحلیل خطا}{55}{subsection.5.3.4}%
+\contentsline {subsection}{\numberline {5-3-5}مزایا و معایب روش پیشنهادی}{56}{subsection.5.3.5}%
+\contentsline {subsection}{\numberline {5-3-6}نحوه پیاده‌سازی و اجرا آزمایش‌ها}{57}{subsection.5.3.6}%
+\contentsline {section}{\numberline {5-4}جمع‌بندی}{58}{section.5.4}%
+\contentsline {chapter}{\numberline {6}روش پیشنهادی برای تشخیص موضع بدون داده آموزشی}{59}{chapter.6}%
+\contentsline {section}{\numberline {6-1}روش حل مسئله}{59}{section.6.1}%
+\contentsline {subsection}{\numberline {6-1-1}پرامپت \lr {Zero Shot} }{60}{subsection.6.1.1}%
+\contentsline {subsection}{\numberline {6-1-2}پرامپت \lr {Zero Shot + Chain of Thought} }{61}{subsection.6.1.2}%
+\contentsline {subsection}{\numberline {6-1-3}پرامپت \lr {Zero Shot + Chain of Thought + Context Description} }{61}{subsection.6.1.3}%
+\contentsline {subsection}{\numberline {6-1-4}پرامپت \lr {Few Shot + Chain of Thought + Context Description} }{62}{subsection.6.1.4}%
+\contentsline {section}{\numberline {6-2}آزمایش‌ها و تحلیل نتایج}{63}{section.6.2}%
+\contentsline {subsection}{\numberline {6-2-1}مزایا و معایب روش پیشنهادی}{66}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6-2-2}نحوه پیاده‌سازی و اجرا آزمایش‌ها}{66}{subsection.6.2.2}%
+\contentsline {chapter}{\numberline {7}نتیجه‌گیری و کارهای آینده}{67}{chapter.7}%
+\contentsline {section}{\numberline {7-1}نتیجه‌گیری}{67}{section.7.1}%
+\contentsline {section}{\numberline {7-2}پیشنهادها و کار‌های آینده}{67}{section.7.2}%
+\contentsline {chapter}{مراجع}{69}{chapter*.3}%
+\contentsline {chapter}{واژه‌نامه فارسی به انگلیسی}{78}{chapter*.4}%
+\contentsline {chapter}{واژه‌نامه انگلیسی به فارسی}{80}{chapter*.5}%

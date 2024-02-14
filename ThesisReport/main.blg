@@ -1,0 +1,70 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 10 items.
+A level-1 auxiliary file: intro.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: stance_defenition.aux
+Reallocating 'name_of_file' (item size: 1) to 15 items.
+A level-1 auxiliary file: background.aux
+Reallocating 'name_of_file' (item size: 1) to 17 items.
+A level-1 auxiliary file: relatedworks.aux
+Reallocating 'name_of_file' (item size: 1) to 20 items.
+A level-1 auxiliary file: training_method.aux
+Reallocating 'name_of_file' (item size: 1) to 20 items.
+A level-1 auxiliary file: zeroshot_method.aux
+Reallocating 'name_of_file' (item size: 1) to 15 items.
+A level-1 auxiliary file: conclusion.aux
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: acm-fa.bst
+Reallocating 'name_of_file' (item size: 1) to 4 items.
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: dicfa2en.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+A level-1 auxiliary file: dicen2fa.aux
+Database file #1: Ref.bib
+-- acm-fa.bst version 0.6 (2011/07/01) 
+-- This is a BibTeX style for XePersian: http://www.parsilatex.com
+
+Done.
+You've used 69 entries,
+            2725 wiz_defined-function locations,
+            1076 strings with 24389 characters,
+and the built_in function-call counts, 39151 in all, are:
+= -- 3147
+> -- 2159
+< -- 46
++ -- 835
+- -- 759
+* -- 2960
+:= -- 5355
+add.period$ -- 208
+call.type$ -- 69
+change.case$ -- 534
+chr.to.int$ -- 0
+cite$ -- 69
+duplicate$ -- 1426
+empty$ -- 2455
+format.name$ -- 759
+if$ -- 9911
+int.to.chr$ -- 0
+int.to.str$ -- 69
+missing$ -- 1317
+newline$ -- 628
+num.names$ -- 198
+pop$ -- 654
+preamble$ -- 1
+purify$ -- 452
+quote$ -- 0
+skip$ -- 1035
+stack$ -- 0
+substring$ -- 1848
+swap$ -- 596
+text.length$ -- 46
+text.prefix$ -- 0
+top$ -- 4
+type$ -- 274
+warning$ -- 0
+while$ -- 293
+width$ -- 71
+write$ -- 973
